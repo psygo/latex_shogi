@@ -1,0 +1,134 @@
+\documentclass[12pt]{book}
+
+% ~A6 (+ 5mm min left and right offset)
+\usepackage[%
+  paperheight   = 148mm, 
+  paperwidth    = 105mm,
+  bindingoffset = 5mm,
+  left          = 5mm,
+  right         = 8mm,
+  top           = 15.2mm,
+  bottom        = 13.2mm,
+  footskip      = 6.35mm,
+]{geometry}
+
+\usepackage{luatexja}
+
+\usepackage{tikz}
+
+\pgfkeys{%
+  /phili/shogiban/.cd, 
+    board dimension/.store in   = \boardDimension,
+    board dimension             = 5 cm,
+    height multiplier/.store in = \heightMultiplier,
+    height multiplier           = 1.2,
+}
+
+\newcommand{\calculateDimensions}{
+  \pgfmathsetmacro{\width}{\boardDimension}
+  \pgfmathsetmacro{\height}{\boardDimension * \heightMultiplier}
+}
+
+\newcommand{\calculateSteps}{
+  \pgfmathsetmacro{\stepX}{\width / 9 cm}
+  \pgfmathsetmacro{\stepY}{\height / 9 cm}
+}
+    
+\newcommand{\shogiGrid}[1][]{
+  \draw[xstep = \stepX, ystep = \stepY]
+    (0, 0) grid
+    (\boardDimension, \boardDimension * \heightMultiplier);
+}
+
+\newenvironment{shogiban}[1][]{
+  \pgfkeys{/phili/shogiban/.cd, #1}
+
+  \begin{tikzpicture}
+    \calculateDimensions
+    \calculateSteps
+
+    \shogiGrid
+}{
+  \end{tikzpicture}
+}
+
+\pgfkeys{%
+  /phili/piece/.cd, 
+    x/.store in     = \pieceX,
+    x               = 0,
+    y/.store in     = \pieceY,
+    y               = 0,
+    text/.store in  = \pieceText,
+    text            = A,
+    color/.store in = \pieceColor,
+    text            = black,
+}
+
+\newcommand{\piece}[1][]{
+  \pgfkeys{/phili/piece/.cd, #1}
+  
+  \pgfmathsetmacro{\pieceCorrectedX}{(\pieceX + 0.5) * \stepX}
+  \pgfmathsetmacro{\pieceCorrectedY}{(\pieceY + 0.5) * \stepY}
+
+  \pgfmathsetmacro{\pieceBaseStartX}{(\pieceX + 0.2) * \stepX}
+  \pgfmathsetmacro{\pieceBaseStartY}{(\pieceY + 0.2) * \stepY}
+  \pgfmathsetmacro{\pieceBaseEndX}{(\pieceX + 0.8) * \stepX}
+  \pgfmathsetmacro{\pieceBaseEndY}{(\pieceY + 0.2) * \stepY}
+  \pgfmathsetmacro{\pieceTopLeftX}{(\pieceX + 0.22) * \stepX}
+  \pgfmathsetmacro{\pieceTopLeftY}{(\pieceY + 0.73) * \stepY}
+  \pgfmathsetmacro{\pieceTopRightX}{(\pieceX + 0.78) * \stepX}
+  \pgfmathsetmacro{\pieceTopRightY}{(\pieceY + 0.73) * \stepY}
+  \pgfmathsetmacro{\pieceTopX}{(\pieceX + 0.5) * \stepX}
+  \pgfmathsetmacro{\pieceTopY}{(\pieceY + 0.85) * \stepY}
+
+  \draw [draw = \pieceColor]
+    (\pieceTopX, \pieceTopY) --
+    (\pieceTopLeftX, \pieceTopLeftY) --
+    (\pieceBaseStartX, \pieceBaseStartY) --
+    (\pieceBaseEndX, \pieceBaseEndY) --
+    (\pieceTopRightX, \pieceTopRightY) --
+    (\pieceTopX, \pieceTopY);
+
+  \draw (\pieceCorrectedX, \pieceCorrectedY) 
+    node[
+      font  = \fontsize{7.5pt}{7.5pt}\selectfont,
+      color = \pieceColor,
+    ] {\pieceText};
+}
+
+\begin{document}
+  \begin{shogiban}[board dimension = 5cm]
+    % Back Line
+    \piece[x = 0, y = 0, text = 香, color = black] % Lance
+    \piece[x = 1, y = 0, text = 桂, color = black] % Knight
+    \piece[x = 2, y = 0, text = 銀, color = black] % Silver
+    \piece[x = 3, y = 0, text = 金, color = black] % Gold
+    \piece[x = 4, y = 0, text = 玉, color = black] % King (sente)
+    \piece[x = 5, y = 0, text = 金, color = black] % Gold
+    \piece[x = 6, y = 0, text = 銀, color = black] % Silver
+    \piece[x = 7, y = 0, text = 桂, color = black] % Knight
+    \piece[x = 8, y = 0, text = 香, color = black] % Lance
+    % Middle Line
+    \piece[x = 1, y = 1, text = 角, color = black] % Bishop
+    \piece[x = 7, y = 1, text = 飛, color = black] % Bishop
+    % Front Line
+    \piece[x = 0, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 1, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 2, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 3, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 4, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 5, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 6, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 7, y = 2, text = 歩, color = black] % Bishop
+    \piece[x = 8, y = 2, text = 歩, color = black] % Bishop
+    % Promoted Pieces
+    \piece[x = 1, y = 3, text = 馬, color = red] % Promoted Bishop (Dragon Horse)
+    \piece[x = 7, y = 3, text = 龍, color = red] % Promoted Rook (Dragon King)
+    \piece[x = 3, y = 3, text = 全, color = red] % Promoted Silver (Gold)
+    \piece[x = 4, y = 3, text = 今, color = red] % Promoted Knight
+    \piece[x = 5, y = 3, text = 杏, color = red] % Promoted Lance
+    \piece[x = 4, y = 4, text = と, color = red] % Promoted Pawn
+  \end{shogiban}
+\end{document}
+  \end{shogiban}
+\end{document}
