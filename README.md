@@ -2,6 +2,10 @@
 
 A package for drawing shogi vector diagrams with LaTeX.
 
+<div style="display: inline-flex">
+  <img src="assets/sample_1.png" height="300px" alt="Sample 1" />
+</div>
+
 ## References
 
 - Repos:
