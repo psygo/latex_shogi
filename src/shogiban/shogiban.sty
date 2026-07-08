@@ -9,10 +9,18 @@
   /tikz/pics/shogi grid/.style={
     code={
       \pgfmathsetmacro{\correctedBorderScale}{\shogiBorderScale * 0.1}
+      \pgfmathsetmacro{\correctedOuterBorderScale}{\shogiOuterBorderScale * 0.1}
 
       \draw[
         line width = \correctedBorderScale mm,
       ] (0, 0) grid[step = 1]
+        (\shogiBoardDimension, \shogiBoardDimension * \shogiHeightMultiplier);
+
+      % Drawn on top of the grid so the outer frame can be scaled
+      % independently and stand out from the inner lines.
+      \draw[
+        line width = \correctedOuterBorderScale mm,
+      ] (0, 0) rectangle
         (\shogiBoardDimension, \shogiBoardDimension * \shogiHeightMultiplier);
     },
   },
@@ -83,6 +91,8 @@
     height multiplier            = 1.2,
     border scale/.store in       = \shogiBorderScale,
     border scale                 = 1.2,
+    outer border scale/.store in = \shogiOuterBorderScale,
+    outer border scale           = 5.5,
     initial scale/.style         = {
       /tikz/x                    = \shogiBoardDimension / 9 cm * 1 cm,
       /tikz/y                    = \shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm
