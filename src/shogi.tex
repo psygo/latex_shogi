@@ -12,6 +12,14 @@
 ]{hyperref}
 \usepackage[margin = 2.5cm]{geometry}
 \usepackage[portuguese]{babel}
+\usepackage{enumitem}
+
+\setlist{
+  itemsep   = 0.5em,
+  parsep    = 0pt,
+  topsep    = 0.6em, 
+  partopsep = 0pt,
+}
 
 \renewcommand{\labelitemii}{$\circ$}
 
@@ -42,7 +50,7 @@
 
   \section{Introdução}
   
-  Os seguintes problemas são um excelente treinamento para quem está começando neste jogo fascinante.
+  Este guia tem como intuito ajudar aqueles que já aprenderam as regras.
    
   \section{Referências}
   
@@ -57,17 +65,19 @@
         \item Lishogi: \underline{\href{https://lishogi.org/}{lishogi.org}}
         \item Play Shogi: \underline{\href{https://playshogi.com/}{playshogi.com}}
       \end{itemize}
-    \item \LaTeX \ Shogi, o repositório utilizado para a construção deste guia: \linebreak \underline{\href{https://github.com/psygo/latex_shogi}{github.com/psygo/latex\_shogi}}
+    \item \vspace{0.3cm} \LaTeX \ Shogi, o repositório utilizado para a construção deste guia: \linebreak \underline{\href{https://github.com/psygo/latex_shogi}{github.com/psygo/latex\_shogi}}
   \end{itemize}
+
+  \pagebreak 
 
   \section{Peças}
   
-  Note, porém, que valor de peças tem ainda menos relevância do que no xadrez. Shogi é ainda mais contextual, ou seja, a posição global afeta mais o valor das peças.
+  \begin{itemize}
+    \item Note, porém, que valor de peças tem ainda menos relevância do que no xadrez. Shogi é ainda mais contextual, ou seja, a posição global afeta mais o valor das peças.
+    \item Promover um peão possui um bônus pois, caso o adversário capture o peão promovido, ele somente terá o peão como recurso de recolocação no tabuleiro.
+    \item Outro princípio interessante é que o valor das peças como recolocação (capturadas) é maior do que no tabuleiro.
+  \end{itemize}
 
-  Promover um peão possui um bônus pois, caso o adversário capture o peão promovido, ele somente terá o peão como recurso de recolocação no tabuleiro.
-  
-  Outro princípio interessante é que o valor das peças como recolocação (capturadas) é maior do que no tabuleiro.
-  
   \begin{center}
     \renewcommand{\arraystretch}{1.25}
     \setlength{\tabcolsep}{0.5cm}
