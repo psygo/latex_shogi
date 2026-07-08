@@ -58,40 +58,54 @@
     \item \LaTeX \ Shogi, o repositório utilizado para a construção deste guia: \linebreak \underline{\href{https://github.com/psygo/latex_shogi}{github.com/psygo/latex\_shogi}}
   \end{itemize}
   
+  \pagebreak
+  
   
   \section{Problemas}
   
   \subsection{Problema 1}
   
-  \vspace{2cm}
+  % Fonte: Learning to Use the Pieces, Japanese Chess, Trevor Leggett.
+
+  \vspace{0.5cm}
+
+  Mate em 1. Ataque o rei com uma cobertura.
+
+  \vspace{1cm}
 
   \begin{center}
     \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
-      \pic at (0, 0) {shogi piece = {text = \shogiLance}}; % Lance
-      \pic at (1, 0) {shogi piece = {text = 桂}}; % Knight
-      \pic at (2, 0) {shogi piece = {text = 銀}}; % Silver
-      \pic at (3, 0) {shogi piece = {text = 金}}; % Gold
-      \pic at (4, 0) {shogi piece = {text = 玉, scale = 1.1}}; % King (sente)
-      \pic at (5, 0) {shogi piece = {text = 金}}; % Gold
-      \pic at (6, 0) {shogi piece = {text = 銀}}; % Silver
-      \pic at (7, 0) {shogi piece = {text = 桂}}; % Knight
-      \pic at (8, 0) {shogi piece = {text = 香}}; % Lance
+      % Defending
+      \pic at (1, 8) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}}; % King (gote)
 
-      \pic at (1, 1) {shogi piece = {text = 角}}; % Bishop
-      \pic at (7, 1) {shogi piece = {text = 飛}}; % Rook
-
-      \foreach \x in {0, ..., 8} {
-        \pic at (\x, 2) {shogi piece = {text = 歩}}; % Pawn  
-      }
-
-      \pic at (1, 3) {shogi piece = {color = red, text = 馬}}; % Promoted Bishop (Dragon Horse)
-      \pic at (7, 3) {shogi piece = {color = red, text = 龍}}; % Promoted Rook (Dragon King)
-      \pic at (3, 3) {shogi piece = {color = red, text = 全}}; % Promoted Silver (Gold)
-      \pic at (4, 3) {shogi piece = {color = red, text = 今}}; % Promoted Knight
-      \pic at (5, 3) {shogi piece = {color = red, text = 杏}}; % Promoted Lance
-      \pic at (4, 4) {shogi piece = {color = red, text = と}}; % Promoted Pawn
-
-      \pic at (4, 8) {shogi piece = {text = 王, scale = 1.2, rotate = 180}}; % King (gote)
+      % Attacking
+      \pic at (1, 6) {shogi piece = {text = \shogiPawn}}; % Pawn  
+      \pic at (2, 5) {shogi piece = {text = \shogiKnight, scale = 1.05}}; % Pawn  
     \end{shogiban}
   \end{center}
+  
+  \pagebreak
+
+  \subsection{Problema 2}
+
+  % Fonte: Learning to Use the Pieces, Japanese Chess, Trevor Leggett.
+
+  \vspace{0.5cm}
+
+  Mate em 1. Mais um problema de cobrir a peça que atacará o rei diretamente.
+
+  \vspace{1cm}
+
+  \begin{center}
+    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
+      % Defending
+      \pic at (0, 8) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}}; % King (gote)
+
+      % Attacking
+      \pic at (1, 6) {shogi piece = {text = \shogiSilver, scale = 1.05}}; % Pawn  
+      \pic at (2, 5) {shogi piece = {text = \shogiBishop, scale = 1.1}}; % Pawn  
+    \end{shogiban}
+  \end{center}
+  
+  \pagebreak
 \end{document}

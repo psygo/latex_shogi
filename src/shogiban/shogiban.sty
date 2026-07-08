@@ -14,12 +14,14 @@
     code={
       \pgfkeys{/tikz/shift={(0.5, 0.5)}, /phili/shogiban/piece/.cd, #1}
 
-      \pgfmathsetmacro{\correctedFontSize}{\shogiFontScale * \shogiPieceFontScale * 7.5}
+      \pgfmathsetmacro{\correctedPieceFontSize}{\shogiFontScale * \shogiPieceFontScale * 7.5}
+      \pgfmathsetmacro{\correctedPieceBorderScale}{\shogiPieceBorderScale * 0.3}
 
       \draw[
-        draw   = \shogiPieceColor,
-        scale  = \shogiPieceScale,
-        rotate = \shogiPieceRotate,
+        draw       = \shogiPieceColor,
+        scale      = \shogiPieceScale,
+        rotate     = \shogiPieceRotate,
+        line width = \correctedPieceBorderScale mm,
       ]
         (0    , 0.35) --
         (-0.28, 0.23) --
@@ -28,33 +30,35 @@
         (0.28 , 0.23) --
         cycle;
       \node[
-        font   = \fontsize{\correctedFontSize pt}{7.5 pt}\selectfont,
+        font   = \fontsize{\correctedPieceFontSize pt}{7.5 pt}\selectfont,
         color  = \shogiPieceColor,
         scale  = \shogiPieceScale,
       ] at (0, 0) {\rotatebox{\shogiPieceRotate}{\shogiPieceText}};
     }
   },
   /phili/shogiban/.cd, 
-    board dimension/.store in   = \shogiBoardDimension,
-    board dimension             = 5 cm,
-    height multiplier/.store in = \shogiHeightMultiplier,
-    height multiplier           = 1.2,
-    initial scale/.style        = {
-      /tikz/x                   = \shogiBoardDimension / 9 cm * 1 cm,
-      /tikz/y                   = \shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm
+    board dimension/.store in    = \shogiBoardDimension,
+    board dimension              = 5 cm,
+    height multiplier/.store in  = \shogiHeightMultiplier,
+    height multiplier            = 1.2,
+    initial scale/.style         = {
+      /tikz/x                    = \shogiBoardDimension / 9 cm * 1 cm,
+      /tikz/y                    = \shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm
     },
-    font scale/.store in        = \shogiFontScale,
-    font scale                  = 1,
-    piece/color/.store in       = \shogiPieceColor, 
-    piece/color                 = black,
-    piece/text/.store in        = \shogiPieceText,
-    piece/text                  = A,
-    piece/font scale/.store in  = \shogiPieceFontScale,
-    piece/font scale            = 1,
-    piece/scale/.store in       = \shogiPieceScale,
-    piece/scale                 = 1.0,
-    piece/rotate/.store in      = \shogiPieceRotate,
-    piece/rotate                = 0,
+    font scale/.store in         = \shogiFontScale,
+    font scale                   = 1,
+    piece/color/.store in        = \shogiPieceColor, 
+    piece/color                  = black,
+    piece/text/.store in         = \shogiPieceText,
+    piece/text                   = A,
+    piece/font scale/.store in   = \shogiPieceFontScale,
+    piece/font scale             = 1,
+    piece/scale/.store in        = \shogiPieceScale,
+    piece/scale                  = 1,
+    piece/border scale/.store in = \shogiPieceBorderScale,
+    piece/border scale           = 1,
+    piece/rotate/.store in       = \shogiPieceRotate,
+    piece/rotate                 = 0,
 }
 
 \newenvironment{shogiban}[1][]{%
