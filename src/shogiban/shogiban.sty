@@ -2,6 +2,8 @@
 
 \usepackage{tikz}
 
+\newif\ifshogiCoordinates
+
 % From [this answer by @JasperHabicht](https://tex.stackexchange.com/a/730333/64441).
 \pgfkeys{
   /tikz/pics/shogi grid/.style={
@@ -10,8 +12,29 @@
 
       \draw[
         line width = \correctedBorderScale mm,
-      ] (0, 0) grid[step = 1] 
-        (\shogiBoardDimension, \shogiBoardDimension * \shogiHeightMultiplier); 
+      ] (0, 0) grid[step = 1]
+        (\shogiBoardDimension, \shogiBoardDimension * \shogiHeightMultiplier);
+    },
+  },
+  /tikz/pics/shogi coordinates/.style={
+    code={
+      \pgfmathsetmacro{\correctedCoordFontSize}{\shogiFontScale * 4}
+
+      % Files (suji), 9 to 1 left to right, matching the perspective of
+      % the player sitting at the bottom (Sente) of a printed diagram.
+      \foreach \x/\file in {0/9, 1/8, 2/7, 3/6, 4/5, 5/4, 6/3, 7/2, 8/1} {
+        \node[
+          font = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
+        ] at (\x + 0.5, 9.3) {\file};
+      }
+
+      % Ranks (dan), I to IX top to bottom, as in Trevor Leggett's books.
+      \foreach \y/\rank in {8/I, 7/II, 6/III, 5/IV, 4/V, 3/VI, 2/VII, 1/VIII, 0/IX} {
+        \node[
+          font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
+          anchor = west,
+        ] at (9.2, \y + 0.5) {\rank};
+      }
     },
   },
   /tikz/pics/shogi piece/.style={
@@ -66,6 +89,8 @@
     },
     font scale/.store in         = \shogiFontScale,
     font scale                   = 1,
+    coordinates/.is if           = shogiCoordinates,
+    coordinates                  = true,
     piece/color/.store in        = \shogiPieceColor, 
     piece/color                  = black,
     piece/text/.store in         = \shogiPieceText,
@@ -85,6 +110,9 @@
 \newenvironment{shogiban}[1][]{%
   \begin{tikzpicture}[/phili/shogiban/.cd, #1, initial scale]
     \pic{shogi grid};
+    \ifshogiCoordinates
+      \pic{shogi coordinates};
+    \fi
 }{
   \end{tikzpicture}%
 }
