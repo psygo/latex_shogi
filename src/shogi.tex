@@ -111,8 +111,6 @@
 
   Mate em 1. Ataque o rei com uma cobertura.
 
-  \vspace{1cm}
-
   \begin{center}
     \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
       % Defending
@@ -133,8 +131,6 @@
   \vspace{0.5cm}
 
   Mate em 1. Mais um problema de cobrir a peça que atacará o rei diretamente.
-
-  \vspace{1cm}
 
   \begin{center}
     \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
@@ -157,8 +153,6 @@
 
   Mate em 3. 
 
-  \vspace{1cm}
-
   \begin{center}
     \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
       % Defending
@@ -166,6 +160,33 @@
 
       % Attacking
       \pic at (5, 5) {shogi piece = {text = \shogiSilver, scale = 1.05}};
+
+      % Captured Pieces (Sente)
+      \pic at (10, 0) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
+    \end{shogiban}
+  \end{center}
+  
+  \pagebreak
+
+  \subsection{Problema 4}
+
+  % Fonte: Tsume em 3 Movimentos, por Masahiko Urano 8p
+
+  \vspace{0.5cm}
+
+  Mate em 3. 
+
+  \begin{center}
+    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
+      % Defending
+      \pic at (7, 7) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
+      \pic at (8, 7) {shogi piece = {text = \shogiLance, scale = 1, rotate = 180}};
+      \pic at (8, 6) {shogi piece = {text = \shogiSilver, scale = 1.05, rotate = 180}};
+      \pic at (8, 5) {shogi piece = {text = \shogiPawn, scale = 1, rotate = 180}};
+      \pic at (7, 5) {shogi piece = {text = \shogiPawn, scale = 1, rotate = 180}};
+
+      % Attacking
+      \pic at (5, 6) {shogi piece = {text = \shogiGold, scale = 1.05}};
 
       % Captured Pieces (Sente)
       \pic at (10, 0) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
