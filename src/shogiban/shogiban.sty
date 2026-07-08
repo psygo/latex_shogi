@@ -14,7 +14,7 @@
     code={
       \pgfkeys{/tikz/shift={(0.5, 0.5)}, /phili/shogiban/piece/.cd, #1}
 
-      \pgfmathsetmacro{\correctedFontSize}{\shogiPieceFontScale * 7.5}
+      \pgfmathsetmacro{\correctedFontSize}{\shogiFontScale * \shogiPieceFontScale * 7.5}
 
       \draw[
         draw   = \shogiPieceColor,
@@ -43,6 +43,8 @@
       /tikz/x                   = \shogiBoardDimension / 9 cm * 1 cm,
       /tikz/y                   = \shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm
     },
+    font scale/.store in        = \shogiFontScale,
+    font scale                  = 1,
     piece/color/.store in       = \shogiPieceColor, 
     piece/color                 = black,
     piece/text/.store in        = \shogiPieceText,
@@ -61,3 +63,19 @@
 }{
   \end{tikzpicture}%
 }
+
+\def\shogiLance{香}
+\def\shogiKnight{桂}
+\def\shogiSilver{銀}
+\def\shogiGold{金}
+\def\shogiKingSente{玉}
+\def\shogiKingGote{王}
+\def\shogiBishop{角}
+\def\shogiRook{飛}
+\def\shogiPawn{歩}
+\def\shogiPromotedBishop{馬} % Dragon Horse
+\def\shogiPromotedRook{龍} % Dragon King
+\def\shogiPromotedSilver{全}
+\def\shogiPromotedKnight{今}
+\def\shogiPromotedLance{杏}
+\def\shogiPromotedPawn{と}
