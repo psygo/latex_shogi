@@ -20,6 +20,7 @@
 
       \pgfmathsetmacro{\correctedPieceFontSize}{\shogiFontScale * \shogiPieceFontScale * 7.5}
       \pgfmathsetmacro{\correctedPieceBorderScale}{\shogiPieceBorderScale * 0.3}
+      \pgfmathsetmacro{\correctedCountFontSize}{\correctedPieceFontSize * 0.65}
 
       \draw[
         draw       = \shogiPieceColor,
@@ -38,6 +39,18 @@
         color  = \shogiPieceColor,
         scale  = \shogiPieceScale,
       ] at (0, 0) {\rotatebox{\shogiPieceRotate}{\shogiPieceText}};
+
+      % Used for captured pieces (komadai), where more than one of the
+      % same piece is held in hand: draws a small count badge next to
+      % the piece. Omitted when count <= 1, since a lone piece in hand
+      % is never annotated with a "1" in standard notation.
+      \ifnum\shogiPieceCount>1
+        \node[
+          font  = \fontsize{\correctedCountFontSize pt}{7.5 pt}\selectfont,
+          color = \shogiPieceColor,
+          scale = \shogiPieceScale,
+        ] at (0.5, -0.5) {\shogiPieceCount};
+      \fi
     }
   },
   /phili/shogiban/.cd, 
@@ -65,6 +78,8 @@
     piece/border scale           = 1,
     piece/rotate/.store in       = \shogiPieceRotate,
     piece/rotate                 = 0,
+    piece/count/.store in        = \shogiPieceCount,
+    piece/count                  = 1,
 }
 
 \newenvironment{shogiban}[1][]{%
@@ -74,18 +89,18 @@
   \end{tikzpicture}%
 }
 
+\def\shogiPawn{歩}
+\def\shogiPromotedPawn{と}
 \def\shogiLance{香}
+\def\shogiPromotedLance{杏}
 \def\shogiKnight{桂}
+\def\shogiPromotedKnight{今}
 \def\shogiSilver{銀}
+\def\shogiPromotedSilver{全}
 \def\shogiGold{金}
+\def\shogiBishop{角}
+\def\shogiPromotedBishop{馬} % Dragon Horse
+\def\shogiRook{飛}
+\def\shogiPromotedRook{龍} % Dragon King
 \def\shogiKingSente{玉}
 \def\shogiKingGote{王}
-\def\shogiBishop{角}
-\def\shogiRook{飛}
-\def\shogiPawn{歩}
-\def\shogiPromotedBishop{馬} % Dragon Horse
-\def\shogiPromotedRook{龍} % Dragon King
-\def\shogiPromotedSilver{全}
-\def\shogiPromotedKnight{今}
-\def\shogiPromotedLance{杏}
-\def\shogiPromotedPawn{と}

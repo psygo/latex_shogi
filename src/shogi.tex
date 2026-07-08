@@ -20,6 +20,7 @@
 % Paragraph Formatting
 
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5em}
 \linespread{1.2}
 
 % ----------------------------------------------------------
@@ -38,19 +39,19 @@
 \begin{document}
   \maketitle
   
-  \vspace{-0.5cm}
+  \vspace{-2.25cm}
 
   \section{Introdução}
   
   Os seguintes problemas são um excelente treinamento para quem está começando neste jogo fascinante.
-  
+   
   \section{Referências}
   
   \begin{itemize}
     \item Livros
       \begin{itemize}
         \item \emph{\href{https://www.goodreads.com/book/show/5316228-japanese-chess}{Japanese Chess: The Game of Shogi}}, por Trevor Leggett.
-        \item \emph{\href{https://www.goodreads.com/book/show/77679949-3-hand-if-ballerina-handbook}{Tsume em 3 Movimentos}}, por Masahiko Urano 8p.
+        \item \emph{\href{https://www.goodreads.com/book/show/77679949-3-hand-if-ballerina-handbook}{Tsume em 3 Movimentos }} (3手詰ハンドブック 新版), por Masahiko Urano 8p.
       \end{itemize}
     \item Sites
       \begin{itemize}
@@ -59,6 +60,43 @@
       \end{itemize}
     \item \LaTeX \ Shogi, o repositório utilizado para a construção deste guia: \linebreak \underline{\href{https://github.com/psygo/latex_shogi}{github.com/psygo/latex\_shogi}}
   \end{itemize}
+
+  \section{Peças}
+  
+  Note, porém, que valor de peças tem ainda menos relevância do que no xadrez. Shogi é ainda mais contextual, ou seja, a posição global afeta mais o valor das peças.
+
+  Promover um peão possui um bônus pois, caso o adversário capture o peão promovido, ele somente terá o peão como recurso de recolocação no tabuleiro.
+  
+  Outro princípio interessante é que o valor das peças como recolocação (capturadas) é maior do que no tabuleiro.
+  
+  \vspace{0.5cm}
+  
+  \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \setlength{\tabcolsep}{0.5cm}
+
+    \begin{tabular}{ | l | l | l | }
+      \hline
+      \textbf{Peça} & \textbf{Kanji} & \textbf{Valor} \\
+      \hline\hline
+      Peão                              & 歩 & 1  \\
+      Peão Promovido (Ouro)             & と & 7  \\
+      Lança                             & 香 & 3  \\
+      Lança Promovida (Ouro)            & 杏 & 6  \\
+      Caveleiro                         & 桂 & 4  \\
+      Caveleiro Promovido (Ouro)        & 今 & 6  \\
+      General de Prata                  & 銀 & 5  \\
+      General de Prata Promovido (Ouro) & 全 & 6  \\
+      General de Ouro                   & 金 & 6  \\
+      Bispo                             & 角 & 8  \\
+      Bispo Promovido (Cavalo Dragão)   & 馬 & 12 \\
+      Torre                             & 飛 & 9  \\
+      Torre Promovida (Rei Dragão)      & 龍 & 13 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  
+  \vspace{1cm}
   
   \pagebreak
   
@@ -128,9 +166,10 @@
 
       % Attacking
       \pic at (5, 5) {shogi piece = {text = \shogiSilver, scale = 1.05}};
+
+      % Captured Pieces (Sente)
+      \pic at (8, -1) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
     \end{shogiban}
-    % Captured Pieces (Sente)
-    \huge \shogiGold
   \end{center}
   
   \pagebreak
