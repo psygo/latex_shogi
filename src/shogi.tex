@@ -26,9 +26,9 @@
 % Title
 
 \title{%
-  \scshape \fontsize{26pt}{22pt}\selectfont \vspace{-1.5cm} Primeiros Passos no Shogi}
+  \scshape \fontsize{26pt}{22pt}\selectfont \vspace{-1cm} Primeiros Passos no Shogi}
 \author{%
-  \scshape \Large Philippe Fanaro
+  % \scshape \Large Philippe Fanaro
 }
 \date{}
 
@@ -38,6 +38,8 @@
 \begin{document}
   \maketitle
   
+  \vspace{-0.5cm}
+
   \section{Introdução}
   
   Os seguintes problemas são um excelente treinamento para quem está começando neste jogo fascinante.
@@ -76,11 +78,11 @@
   \begin{center}
     \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
       % Defending
-      \pic at (1, 8) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}}; % King (gote)
+      \pic at (1, 8) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
 
       % Attacking
-      \pic at (1, 6) {shogi piece = {text = \shogiPawn}}; % Pawn  
-      \pic at (2, 5) {shogi piece = {text = \shogiKnight, scale = 1.05}}; % Pawn  
+      \pic at (1, 6) {shogi piece = {text = \shogiPawn}};
+      \pic at (2, 5) {shogi piece = {text = \shogiKnight, scale = 1.05}};
     \end{shogiban}
   \end{center}
   
@@ -99,12 +101,36 @@
   \begin{center}
     \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
       % Defending
-      \pic at (0, 8) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}}; % King (gote)
+      \pic at (0, 8) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
 
       % Attacking
-      \pic at (1, 6) {shogi piece = {text = \shogiSilver, scale = 1.05}}; % Pawn  
-      \pic at (2, 5) {shogi piece = {text = \shogiBishop, scale = 1.1}}; % Pawn  
+      \pic at (1, 6) {shogi piece = {text = \shogiSilver, scale = 1.05}};
+      \pic at (2, 5) {shogi piece = {text = \shogiBishop, scale = 1.1}};
     \end{shogiban}
+  \end{center}
+  
+  \pagebreak
+
+  \subsection{Problema 3}
+
+  % Fonte: Tsume em 3 Movimentos, por Masahiko Urano 8p
+
+  \vspace{0.5cm}
+
+  Mate em 3. 
+
+  \vspace{1cm}
+
+  \begin{center}
+    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
+      % Defending
+      \pic at (5, 7) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
+
+      % Attacking
+      \pic at (5, 5) {shogi piece = {text = \shogiSilver, scale = 1.05}};
+    \end{shogiban}
+    % Captured Pieces (Sente)
+    \huge \shogiGold
   \end{center}
   
   \pagebreak
