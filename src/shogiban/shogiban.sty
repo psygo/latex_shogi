@@ -3,6 +3,8 @@
 \usepackage{tikz}
 
 \newif\ifshogiCoordinates
+\newif\ifshogiLetterRanks
+\newif\ifshogiPieceOutline
 
 % From [this answer by @JasperHabicht](https://tex.stackexchange.com/a/730333/64441).
 \pgfkeys{
@@ -36,13 +38,23 @@
         ] at (\x + 0.5, 9.3) {\file};
       }
 
-      % Ranks (dan), I to IX top to bottom, as in Trevor Leggett's books.
-      \foreach \y/\rank in {8/I, 7/II, 6/III, 5/IV, 4/V, 3/VI, 2/VII, 1/VIII, 0/IX} {
-        \node[
-          font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
-          anchor = west,
-        ] at (9.2, \y + 0.5) {\rank};
-      }
+      % Ranks (dan), top to bottom: either Roman numerals I-IX, as in
+      % Trevor Leggett's books, or letters A-I.
+      \ifshogiLetterRanks
+        \foreach \y/\rank in {8/A, 7/B, 6/C, 5/D, 4/E, 3/F, 2/G, 1/H, 0/J} {
+          \node[
+            font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
+            anchor = west,
+          ] at (9.2, \y + 0.5) {\rank};
+        }
+      \else
+        \foreach \y/\rank in {8/I, 7/II, 6/III, 5/IV, 4/V, 3/VI, 2/VII, 1/VIII, 0/IX} {
+          \node[
+            font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
+            anchor = west,
+          ] at (9.2, \y + 0.5) {\rank};
+        }
+      \fi
     },
   },
   /tikz/pics/shogi piece/.style={
@@ -53,18 +65,23 @@
       \pgfmathsetmacro{\correctedPieceBorderScale}{\shogiPieceBorderScale * 0.3}
       \pgfmathsetmacro{\correctedCountFontSize}{\correctedPieceFontSize * 0.65}
 
-      \draw[
-        draw       = \shogiPieceColor,
-        scale      = \shogiPieceScale,
-        rotate     = \shogiPieceRotate,
-        line width = \correctedPieceBorderScale mm,
-      ]
-        (0    , 0.35) --
-        (-0.28, 0.23) --
-        (-0.3 , -0.3) --
-        (0.3  , -0.3) --
-        (0.28 , 0.23) --
-        cycle;
+      % The pentagon "house" outline is the vector-diagram look; plain
+      % book diagrams instead show just the bare kanji in the square,
+      % toggled off via piece/outline = false.
+      \ifshogiPieceOutline
+        \draw[
+          draw       = \shogiPieceColor,
+          scale      = \shogiPieceScale,
+          rotate     = \shogiPieceRotate,
+          line width = \correctedPieceBorderScale mm,
+        ]
+          (0    , 0.35) --
+          (-0.28, 0.23) --
+          (-0.3 , -0.3) --
+          (0.3  , -0.3) --
+          (0.28 , 0.23) --
+          cycle;
+      \fi
       \node[
         font   = \fontsize{\correctedPieceFontSize pt}{7.5 pt}\selectfont,
         color  = \shogiPieceColor,
@@ -97,11 +114,18 @@
       /tikz/x                    = \shogiBoardDimension / 9 cm * 1 cm,
       /tikz/y                    = \shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm
     },
+    % Real 9x9 cells, instead of the height-multiplier-stretched default.
+    square/.style                = { height multiplier = 1 },
     font scale/.store in         = \shogiFontScale,
     font scale                   = 1,
     coordinates/.is if           = shogiCoordinates,
     coordinates                  = true,
-    piece/color/.store in        = \shogiPieceColor, 
+    letter ranks/.is if          = shogiLetterRanks,
+    letter ranks                 = false,
+    % Bundles the square board and bare-kanji pieces typically seen in
+    % printed shogi books, as opposed to this package's vector look.
+    book style/.style            = { square, piece/outline = false },
+    piece/color/.store in        = \shogiPieceColor,
     piece/color                  = black,
     piece/text/.store in         = \shogiPieceText,
     piece/text                   = A,
@@ -115,6 +139,8 @@
     piece/rotate                 = 0,
     piece/count/.store in        = \shogiPieceCount,
     piece/count                  = 1,
+    piece/outline/.is if         = shogiPieceOutline,
+    piece/outline                = true,
 }
 
 \newenvironment{shogiban}[1][]{%
