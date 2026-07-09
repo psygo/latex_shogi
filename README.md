@@ -4,9 +4,9 @@ A package for drawing shogi vector diagrams with LaTeX.
 
 <img src="assets/sample_1.png" height="300px" alt="Sample 1" />
 
-<img src="assets/shogi_problema_1_sample.png" height="300px" alt="Sample 1" />
+<img src="assets/shogi_problema_1_sample.png" height="300px" alt="Sample 2" />
 
-<img src="assets/shogi_problema_5_sample.png" height="300px" alt="Sample 1" />
+<img src="assets/shogi_problema_5_sample.png" height="300px" alt="Sample 2" />
 
 ## Generating SVG Images from the PDF
 
