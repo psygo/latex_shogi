@@ -2,6 +2,8 @@
 
 A package for drawing shogi vector diagrams with LaTeX.
 
+> Take a look at sample pdfs [1](./assets/sample_1.pdf) and [2](./assets/sample_2.pdf)
+
 <img src="assets/sample_1.png" height="300px" alt="Sample 1" />
 
 <img src="assets/shogi_problema_1_sample.png" height="300px" alt="Sample 2" />
