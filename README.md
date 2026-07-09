@@ -2,7 +2,7 @@
 
 A package for drawing shogi vector diagrams with LaTeX.
 
-> Take a look at sample pdfs [1](./assets/sample_1.pdf) and [2](./assets/sample_2.pdf)
+> Take a look at sample pdfs [1](./assets/sample_1.pdf) and [2](./assets/sample_2.pdf).
 
 <img src="assets/sample_1.png" height="300px" alt="Sample 1" />
 
