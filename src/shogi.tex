@@ -21,6 +21,7 @@
   partopsep = 0pt,
 }
 
+
 \renewcommand{\labelitemii}{$\circ$}
 
 \renewcommand{\_}{\leavevmode\kern.06em\vbox{\hrule width.425em}}
@@ -40,6 +41,22 @@
   % \scshape \Large Philippe Fanaro
 }
 \date{}
+
+% ----------------------------------------------------------
+% Problem Diagrams
+
+\newenvironment{shogiBigProblem}[1][]{%
+  \hbox\bgroup
+    \hspace{-1.5cm}
+    \begin{shogiban}[%
+      board dimension = 12.5 cm,
+      font scale = 2.5,
+      #1,
+    ]
+}{
+    \end{shogiban}
+  \egroup
+}
 
 % ----------------------------------------------------------
 
@@ -107,7 +124,6 @@
   
   \pagebreak
   
-  
   \section{Problemas}
   
   \subsection{Problema 1}
@@ -120,17 +136,29 @@
 
   \vspace{1.5cm}
 
-  \hbox{
-    \hspace{-1cm}
-    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
-      % Defending
-      \pic at (8, 1) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
+  \begin{shogiBigProblem}
+    % Defending
+    \pic at (8, 1) {%
+      shogi piece = {%
+        text = \shogiKingGote,
+        scale = 1.2,
+        rotate = 180
+      },
+    };
 
-      % Attacking
-      \pic at (8, 3) {shogi piece = {text = \shogiPawn}};
-      \pic at (7, 4) {shogi piece = {text = \shogiKnight, scale = 1.05}};
-    \end{shogiban}
-  }
+    % Attacking
+    \pic at (8, 3) {%
+      shogi piece = {%
+        text = \shogiPawn
+      }
+    };
+    \pic at (7, 4) {%
+      shogi piece = {%
+        text = \shogiKnight,
+        scale = 1.05
+      }
+    };
+  \end{shogiBigProblem}
   
   \pagebreak
 
@@ -144,17 +172,14 @@
 
   \vspace{1.5cm}
 
-  \hbox{
-    \hspace{-1cm}
-    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
-      % Defending
-      \pic at (9, 1) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
+  \begin{shogiBigProblem}
+    % Defending
+    \pic at (9, 1) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
 
-      % Attacking
-      \pic at (8, 3) {shogi piece = {text = \shogiSilver, scale = 1.05}};
-      \pic at (7, 4) {shogi piece = {text = \shogiBishop, scale = 1.1}};
-    \end{shogiban}
-  }
+    % Attacking
+    \pic at (8, 3) {shogi piece = {text = \shogiSilver, scale = 1.05}};
+    \pic at (7, 4) {shogi piece = {text = \shogiBishop, scale = 1.1}};
+  \end{shogiBigProblem}
   
   \pagebreak
 
@@ -168,19 +193,16 @@
 
   \vspace{1.5cm}
 
-  \hbox{
-    \hspace{-1cm}
-    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
-      % Defending
-      \pic at (4, 2) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
+  \begin{shogiBigProblem}
+    % Defending
+    \pic at (4, 2) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
 
-      % Attacking
-      \pic at (4, 4) {shogi piece = {text = \shogiSilver, scale = 1.05}};
+    % Attacking
+    \pic at (4, 4) {shogi piece = {text = \shogiSilver, scale = 1.05}};
 
-      % Captured Pieces (Sente)
-      \pic at (-1, 9) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
-    \end{shogiban}
-  }
+    % Captured Pieces (Sente)
+    \pic at (-1, 9) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
+  \end{shogiBigProblem}
   
   \pagebreak
 
@@ -194,23 +216,20 @@
 
   \vspace{1.5cm}
 
-  \hbox{
-    \hspace{-1cm}
-    \begin{shogiban}[board dimension = 12.5 cm, font scale = 2.5]
-      % Defending
-      \pic at (2, 2) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
-      \pic at (1, 2) {shogi piece = {text = \shogiLance, scale = 1, rotate = 180}};
-      \pic at (1, 3) {shogi piece = {text = \shogiSilver, scale = 1.05, rotate = 180}};
-      \pic at (1, 4) {shogi piece = {text = \shogiPawn, scale = 1, rotate = 180}};
-      \pic at (2, 4) {shogi piece = {text = \shogiPawn, scale = 1, rotate = 180}};
+  \begin{shogiBigProblem}
+    % Defending
+    \pic at (2, 2) {shogi piece = {text = \shogiKingGote, scale = 1.2, rotate = 180}};
+    \pic at (1, 2) {shogi piece = {text = \shogiLance, scale = 1, rotate = 180}};
+    \pic at (1, 3) {shogi piece = {text = \shogiSilver, scale = 1.05, rotate = 180}};
+    \pic at (1, 4) {shogi piece = {text = \shogiPawn, scale = 1, rotate = 180}};
+    \pic at (2, 4) {shogi piece = {text = \shogiPawn, scale = 1, rotate = 180}};
 
-      % Attacking
-      \pic at (4, 3) {shogi piece = {text = \shogiGold, scale = 1.05}};
+    % Attacking
+    \pic at (4, 3) {shogi piece = {text = \shogiGold, scale = 1.05}};
 
-      % Captured Pieces (Sente)
-      \pic at (-1, 9) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
-    \end{shogiban}
-  }
+    % Captured Pieces (Sente)
+    \pic at (-1, 9) {shogi piece = {text = \shogiGold, scale = 1.05, count = 2}};
+  \end{shogiBigProblem}
   
   \pagebreak
   
