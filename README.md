@@ -12,7 +12,7 @@ A package for drawing shogi vector diagrams with LaTeX.
 
 ## Generating SVG Images from the PDF
 
-You can open the PDF through a graphical editor, such as Inkscape, and then export a selection as an SVG.
+You can open the PDF through a graphical editor, such as [Inkscape](https://inkscape.org/), and then export a selection as an SVG.
 
 You can use the `standalone` document type &mdash; see the [`shogi_diagram_export.tex`](./src/shogi_diagram_export.tex) file &mdash; to export the diagram from a PDF to an SVG:
 
@@ -29,3 +29,5 @@ pdftocairo -svg ./src/shogi_diagram_export.pdf ./src/shogi_diagram_export.svg
   - [@psygo/tsumego_workbooks](https://github.com/psygo/tsumego_workbooks)
 - TeX Stack Exchange:
   - [Japanese Artsy Cursive Fonts for Shogi](https://tex.stackexchange.com/q/730168/64441)
+- Useful Software:
+  - [Inkscape](https://inkscape.org/)
