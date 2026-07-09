@@ -30,12 +30,18 @@
     code={
       \pgfmathsetmacro{\correctedCoordFontSize}{\shogiFontScale * 4}
 
+      % Both label rows sit the same distance from the board edge: the
+      % "leading" edge of each label (its bottom, for files; its left,
+      % for ranks) is pinned to the same offset, via matching anchors.
+      \pgfmathsetmacro{\shogiCoordMargin}{9.25}
+
       % Files (suji), 9 to 1 left to right, matching the perspective of
       % the player sitting at the bottom (Sente) of a printed diagram.
       \foreach \x/\file in {0/9, 1/8, 2/7, 3/6, 4/5, 5/4, 6/3, 7/2, 8/1} {
         \node[
-          font = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
-        ] at (\x + 0.5, 9.3) {\file};
+          font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
+          anchor = south,
+        ] at (\x + 0.5, \shogiCoordMargin) {\file};
       }
 
       % Ranks (dan), top to bottom: either Roman numerals I-IX, as in
@@ -45,14 +51,14 @@
           \node[
             font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
             anchor = west,
-          ] at (9.2, \y + 0.5) {\rank};
+          ] at (\shogiCoordMargin, \y + 0.5) {\rank};
         }
       \else
         \foreach \y/\rank in {8/I, 7/II, 6/III, 5/IV, 4/V, 3/VI, 2/VII, 1/VIII, 0/IX} {
           \node[
             font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
             anchor = west,
-          ] at (9.2, \y + 0.5) {\rank};
+          ] at (\shogiCoordMargin, \y + 0.5) {\rank};
         }
       \fi
     },
@@ -171,6 +177,10 @@
         x     = -\shogiBoardDimension / 9 cm * 1 cm,
         y     = -\shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm,
       ]
+      % Pins the picture's horizontal extent to a fixed file range,
+      % regardless of whether/how far captured pieces are placed past
+      % either edge, so the board itself always sits centred.
+      \path (-1, 5) (11, 5);
 }{
     \end{scope}
   \end{tikzpicture}%
