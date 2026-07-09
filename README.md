@@ -15,7 +15,7 @@ You can open the PDF through a graphical editor, such as Inkscape, and then expo
 You can use the `standalone` document type &mdash; see the [`shogi_diagram_export.tex`](./src/shogi_diagram_export.tex) file &mdash; to export the diagram from a PDF to an SVG:
 
 ```sh
-pdftocairo -svg ./src/shogi_diagram_export.pdf shogi_diagram_export.svg
+pdftocairo -svg ./src/shogi_diagram_export.pdf ./src/shogi_diagram_export.svg
 ```
 
 ## References
