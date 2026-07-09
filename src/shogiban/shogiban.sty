@@ -41,7 +41,7 @@
       % Ranks (dan), top to bottom: either Roman numerals I-IX, as in
       % Trevor Leggett's books, or letters A-I.
       \ifshogiLetterRanks
-        \foreach \y/\rank in {8/A, 7/B, 6/C, 5/D, 4/E, 3/F, 2/G, 1/H, 0/J} {
+        \foreach \y/\rank in {8/A, 7/B, 6/C, 5/D, 4/E, 3/F, 2/G, 1/H, 0/I} {
           \node[
             font   = \fontsize{\correctedCoordFontSize pt}{7.5 pt}\selectfont,
             anchor = west,
@@ -59,7 +59,16 @@
   },
   /tikz/pics/shogi piece/.style={
     code={
-      \pgfkeys{/tikz/shift={(0.5, 0.5)}, /phili/shogiban/piece/.cd, #1}
+      % xscale/yscale cancel the shogi-notation scope's axis flip (see
+      % the shogiban environment below), so the piece itself is always
+      % drawn in a normal, unflipped local frame regardless of where
+      % on the board it was anchored.
+      \pgfkeys{
+        /tikz/xscale = -1,
+        /tikz/yscale = -1,
+        /tikz/shift  = {(0.5, 0.5)},
+        /phili/shogiban/piece/.cd, #1
+      }
 
       \pgfmathsetmacro{\correctedPieceFontSize}{\shogiFontScale * \shogiPieceFontScale * 7.5}
       \pgfmathsetmacro{\correctedPieceBorderScale}{\shogiPieceBorderScale * 0.3}
@@ -149,7 +158,21 @@
     \ifshogiCoordinates
       \pic{shogi coordinates};
     \fi
+
+    % From here on, \pic at (file, rank) follows standard shogi
+    % notation instead of this package's internal grid indices: file
+    % 1-9 right to left, rank 1-9 top to bottom, so (5, 5) is the
+    % centre square and (1, 1) is the top-right corner square. This is
+    % done by shifting the origin to the board's top-right corner and
+    % flipping both axes; the "shogi piece" pic cancels the flip back
+    % out for its own drawing.
+    \begin{scope}[
+        shift = {(\shogiBoardDimension, \shogiBoardDimension * \shogiHeightMultiplier)},
+        x     = -\shogiBoardDimension / 9 cm * 1 cm,
+        y     = -\shogiBoardDimension * \shogiHeightMultiplier / 9 cm * 1 cm,
+      ]
 }{
+    \end{scope}
   \end{tikzpicture}%
 }
 
