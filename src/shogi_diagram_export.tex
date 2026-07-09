@@ -1,0 +1,22 @@
+\documentclass[12pt]{standalone}
+
+\def\repoPath{/Users/phili/Code/latex_shogi/src}
+\usepackage{\repoPath/shogiban/shogiban}
+
+\begin{document}
+  \begin{shogiban}[board dimension = 8 cm, font scale = 2.5, book style, letter ranks]
+    % Defending
+    \pic at (9, 1) {shogi piece = {text = \shogiKingGote, scale = 1.25, rotate = 180}};
+    \pic at (8, 1) {shogi piece = {text = \shogiGold, scale = 1.15, rotate = 180}};
+    
+    % Captured (Gote)
+    \pic at (10.5, 1) {shogi piece = {text = \shogiRook, scale = 1, rotate = 180}};
+
+    % Attacking
+    \pic at (6, 1) {shogi piece = {text = \shogiRook, scale = 1.2}};
+    \pic at (8, 3) {shogi piece = {text = \shogiPawn, scale = 1.1}};
+
+    % Captured (Sente)
+    \pic at (-0.875, 9) {shogi piece = {text = \shogiGold, scale = 1}};
+  \end{shogiban}
+\end{document}
