@@ -8,6 +8,12 @@ A package for drawing shogi vector diagrams with LaTeX.
 
 <img src="assets/shogi_problema_5_sample.png" height="300px" alt="Sample 1" />
 
+## Generating SVG Images from the PDF
+
+You can open the PDF through a graphical editor, such as Inkscape, and then export a selection as an SVG.
+
+There's certainly a LaTeX command for doing things in a more automated way though.
+
 ## References
 
 - Repos:
