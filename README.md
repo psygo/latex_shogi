@@ -1,4 +1,4 @@
-# LaTeX Shogi Diagrams
+# LaTeX Shogi
 
 A package for drawing shogi vector diagrams with LaTeX.
 
